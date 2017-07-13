@@ -8,59 +8,78 @@ const Student = require('../models');
 router.get('/', function (req, res) {
   Student.Student.findAll()
   .then(data => {
-    res.render('student', {dataStudent: data, msg: ""});
-  })
-  .catch(Sequelize.ValidationError, function (err) {
-    res.render('student', {dataStudent:data, err: err})
+    res.render('student', {dataStudent: data});
   })
 })
 
-router.post('/', function(req, res) {
-  Student.Student.create({
-    first_name : req.body.first_name,
-    last_name : req.body.last_name,
-    email : req.body.email,
-    jurusan : req.body.jurusan
-  })
-  .then(function(){
-    res.redirect('/student')
-  })
-  .catch(Sequelize.ValidationError, function (err) {
-    // console.log(`ini hasil ${err.errors[0].message}`);
-    // return res.status(422).send(err.errors);
-    Student.Student.findAll()
-    .then(data => {
-      res.render('student', {dataStudent: data, msg: err.errors[0].message});
+router.get('/add', function(req,res){
+    res.render('student-add', {errmsg: ''})
+ })
+
+router.post('/', function(req, res){
+   Student.Student.findOne({
+      where:{
+       email:req.body.email
+      }
+    })
+  .then(function(result){
+    if(!result){
+      Student.Student.create({
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email: req.body.email,
+        jurusan: req.body.jurusan,
+      })
+      .then(function(){
+        res.redirect('/student')
+      })
+      .catch(function(err){
+       res.render('student-add', {errmsg: err.message});
+      })
+    } else {
+      res.render('student-add', {errmsg: 'Email sudah ada yang pakai om'});
+     }
     })
   })
-});
 
-router.get('/edit/:id', function(req, res) {
-  Student.Student.findOne({
-    where: {
-      id: req.params.id
-    }
-  })
-  .then(data => {
-    // console.log(data.id);
-    res.render('student-edit', {data:data})
-  })
-})
+  router.get('/edit/:id', function(req, res){
+   Student.Student.findById(req.params.id)
+   .then(function(rows) {
+     res.render('student-edit',{data:rows, errmsg: ''})
+   })
+ })
 
-router.post('/update/:id', function(req, res) {
-  Student.Student.update({
-    first_name : req.body.first_name,
-    last_name : req.body.last_name,
-    email : req.body.email,
-    jurusan : req.body.jurusan
-  },{
-    where: {
-      id : req.params.id
-    }
-  })
-  .then(function(){
-    res.redirect('/student')
-  })
+ router.post('/edit/:id', function(req, res){
+   Student.Student.findOne({
+     where:{
+      email: req.body.email
+     }
+   })
+.then(function(result){
+  if(!result || req.body.email === req.body.emailOri){
+    Student.Student.update({
+      first_name: req.body.first_name,
+      last_name: req.body.last_name,
+      email: req.body.email,
+      jurusan: req.body.jurusan,
+    },{
+      where:{
+        id:req.params.id
+      }
+    })
+    .then(function(){
+      res.redirect('/student');
+    })
+    .catch(function(err){
+      Student.Student.findById(req.params.id)
+      .then(function(rows){
+        res.render('student-edit',{data:rows, errmsg: err})
+      })
+    })
+  } else {
+    res.send('email sudah ada yang pakai om')
+  }
+ })
 })
 
 router.get('/delete/:id', function(req, res) {

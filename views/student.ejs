@@ -7,24 +7,8 @@
   <body>
     <h1>DATA MURID</h1>
 
-    <div>
-      <form action="/student" method="post">
-        <label><b>Nama Depan</b></label>
-        <input type="text" name="first_name" placeholder="Isi nama depan" />
-        <label><b>Nama Belakang</b></label>
-        <input type="text" name="last_name" placeholder="Isi nama belakang" />
-        <label><b>Email</b></label>
-        <input type="text" name="email" placeholder="isi email" />
-        <label><b>Jurusan</b></label>
-        <input type="text" name="jurusan" placeholder="Isi jurusan" />
-        <%= msg %>
-        <div>
-          <button type="button">Cancel</button>
-          <button type="submit" value="submit">Submit</button>
-        </div>
-      </form>
-    </div>
-
+    <button id="btn-start"> <a href="student/add"> Tambah Data</a></button>
+    
     <div>
       <table border="1">
         <tr>
@@ -42,7 +26,7 @@
             <td><%= dst.last_name %></td>
             <td><%= dst.email %></td>
             <td><%= dst.jurusan %></td>
-            <td><a href='student/edit/<%= dst.id %>'> Edit</a> || <a href='student/delete/<%= dst.id %>'> Delete</a></td>
+            <td><a href='student/edit/<%= dst.id %>'> Edit</a> || <a href='student/delete/<%= dst.id %>' onclick="return confirm('Yakin mau menghapus data ini?');"> Delete</a></td>
           </tr>
         <% }) %>
       </table>
