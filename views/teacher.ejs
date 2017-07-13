@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Teacher Page</title>
+  </head>
+  <body>
+    <h1>DATA GURU</h1>
+
+    <div>
+      <table border="1">
+        <tr>
+          <th>Id</th>
+          <th>Nama Depan</th>
+          <th>Nama Belakang</th>
+          <th>Email</th>
+        </tr>
+        <% dataTeacher.forEach(dt => {%>
+          <tr>
+            <td><%= dt.id %></td>
+            <td><%= dt.first_name %></td>
+            <td><%= dt.last_name %></td>
+            <td><%= dt.email %></td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+  </body>
+</html>

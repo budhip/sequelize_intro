@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Student Page</title>
+  </head>
+  <body>
+    <h1>DATA MURID</h1>
+
+    <div>
+      <form action="/student" method="post">
+        <label><b>Nama Depan</b></label>
+        <input type="text" name="first_name" placeholder="Isi nama depan" />
+        <label><b>Nama Belakang</b></label>
+        <input type="text" name="last_name" placeholder="Isi nama belakang" />
+        <label><b>Email</b></label>
+        <input type="text" name="email" placeholder="isi email" />
+        <label><b>Jurusan</b></label>
+        <input type="text" name="jurusan" placeholder="Isi jurusan" />
+        <div>
+          <button type="button">Cancel</button>
+          <button type="submit" value="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+
+    <div>
+      <table border="1">
+        <tr>
+          <th>Id</th>
+          <th>Nama Depan</th>
+          <th>Nama Belakang</th>
+          <th>Email</th>
+          <th>Jurusan</th>
+          <th>Action</th>
+        </tr>
+        <% dataStudent.forEach(dst => {%>
+          <tr>
+            <td><%= dst.id %></td>
+            <td><%= dst.first_name %></td>
+            <td><%= dst.last_name %></td>
+            <td><%= dst.email %></td>
+            <td><%= dst.jurusan %></td>
+            <td><a href='student/edit/<%= dst.id %>'> Edit</a> || <a href='student/delete/<%= dst.id %>'> Delete</a></td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+  </body>
+</html>

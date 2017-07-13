@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Subject Page</title>
+  </head>
+  <body>
+    <h1>DATA MATA PELAJARAN</h1>
+
+    <div>
+      <table border="1">
+        <tr>
+          <th>Id</th>
+          <th>Mata Pelajaran</th>
+        </tr>
+        <% dataSubject.forEach(ds => {%>
+          <tr>
+            <td><%= ds.id %></td>
+            <td><%= ds.subject_name %></td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+  </body>
+</html>
