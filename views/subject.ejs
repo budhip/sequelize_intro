@@ -12,11 +12,13 @@
         <tr>
           <th>Id</th>
           <th>Mata Pelajaran</th>
+          <th>Pengajar</th>
         </tr>
         <% dataSubject.forEach(ds => {%>
           <tr>
             <td><%= ds.id %></td>
             <td><%= ds.subject_name %></td>
+            <td><%= ds.Teachers.first_name %></td>
           </tr>
         <% }) %>
       </table>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Teacher Page</title>
+  </head>
+  <body>
+    <h1>Edit Data Murid</h1>
+    <div>
+      <form action="/teacher/edit/<%= data.id %>" method="post">
+        <div class="container">
+          <label><b>Id</b></label>
+          <input type="text" name="id" value="<%= data.id %>" disabled/>
+          <label><b>First Name</b></label>
+          <input type="text" name="first_name" value="<%= data.first_name %>" />
+          <label><b>Last Name</b></label>
+          <input type="text" name="last_name" value="<%= data.last_name %>" />
+          <label><b>Email</b></label>
+          <input type="text" name="email" value="<%= data.email %>" />
+          <label><b>Subject</b></label>
+          <!-- <input type="text" name="SubjectId" value="<%= data.SubjectId %>" /> -->
+          <select name="subject">
+            <%if(data.subject_name == null) {%>
+              <option value="">Unassigned</option>
+              <% data2.forEach(function(d2){ %>
+              <option value="<%= d2.id %>"><%= d2.id %> <%= d2.subject_name %></option>
+              <% }) %>
+            <%} else {%>
+              <option selected="<%= data.SubjectId %>"><%= data.Subject.subject_name %></option>
+              <% data2.forEach(d2 => { %>
+                <option value="<%= d2.id %>"><%= d2.id %> <%= d2.subject_name %></option>
+              <% }) %>
+            <%}%>
+          </select>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

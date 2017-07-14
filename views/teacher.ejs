@@ -7,6 +7,8 @@
   <body>
     <h1>DATA GURU</h1>
 
+    <button id="btn-start"> <a href="teacher/add"> Tambah Data</a></button>
+
     <div>
       <table border="1">
         <tr>
@@ -14,6 +16,8 @@
           <th>Nama Depan</th>
           <th>Nama Belakang</th>
           <th>Email</th>
+          <th>Subject</th>
+          <th>Action</th>
         </tr>
         <% dataTeacher.forEach(dt => {%>
           <tr>
@@ -21,6 +25,12 @@
             <td><%= dt.first_name %></td>
             <td><%= dt.last_name %></td>
             <td><%= dt.email %></td>
+            <% if (dt.SubjectId == null) { %>
+              <td> Unassigned </td>
+            <%} else {%>
+              <td><%= dt.Subject.subject_name %></td>
+            <% } %>
+            <td><a href='teacher/edit/<%= dt.id %>'> Edit</a> || <a href='teacher/delete/<%= dt.id %>' onclick="return confirm('Yakin mau menghapus data ini?');"> Delete</a></td>
           </tr>
         <% }) %>
       </table>
