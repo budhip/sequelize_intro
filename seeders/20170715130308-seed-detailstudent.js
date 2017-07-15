@@ -14,7 +14,7 @@ module.exports = {
     */
     return queryInterface.bulkInsert('Detailstudents', [{
       StudentId: 1,
-      SubjectId: 5,
+      SubjectId: 1,
       score: 85,
       createdAt: new Date(),
       updatedAt: new Date()
