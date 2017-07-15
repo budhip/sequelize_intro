@@ -5,12 +5,58 @@ const Subject = require('../models');
 
 router.get('/', function (req, res) {
   Subject.Subject.findAll({
-    order: [['id', 'ASC']],
+    order: [['subject_name', 'ASC']],
     include: [Subject.Teacher]
   })
   .then(data => {
-    console.log(data);
+    // console.log(data.Teachers[0].id);
     res.render('subject', {dataSubject: data});
+  })
+})
+
+router.get('/add', function(req,res){
+  res.render('subject-add')
+ })
+
+router.post('/', function (req, res) {
+  Subject.Subject.create(req.body)
+  .then(function() {
+    res.redirect('/subject')
+  })
+  .catch(err => {
+    console.log(err);
+  })
+})
+
+router.get('/edit/:id', function(req, res){
+ Subject.Subject.findById(req.params.id)
+ .then(function(rows) {
+   res.render('subject-edit',{data:rows})
+ })
+})
+
+router.post('/edit/:id', function(req, res) {
+  Subject.Subject.update(req.body, {
+    where : {
+      id:req.params.id
+    }
+  })
+  .then(function() {
+    res.redirect('/subject')
+  })
+  .catch(err => {
+    console.log(err);
+  })
+})
+
+router.get('/delete/:id', function(req, res) {
+  Subject.Subject.destroy({
+    where: {
+      id: req.params.id
+    }
+  })
+  .then(data => {
+    res.redirect('/subject');
   })
 })
 

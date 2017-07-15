@@ -3,25 +3,26 @@
   <head>
     <meta charset="utf-8">
     <title>Teacher Page</title>
+    <link href="/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <h1>DATA GURU</h1>
 
-    <button id="btn-start"> <a href="teacher/add"> Tambah Data</a></button>
-
+    <button id="btn-start" onclick="window.location='teacher/add'">Tambah Data</button>
+    <button id="btn-back" onclick="window.location='/'">Back</button>
     <div>
       <table border="1">
         <tr>
-          <th>Id</th>
+          <th>No</th>
           <th>Nama Depan</th>
           <th>Nama Belakang</th>
           <th>Email</th>
           <th>Subject</th>
           <th>Action</th>
         </tr>
-        <% dataTeacher.forEach(dt => {%>
+        <% var no = 1; dataTeacher.forEach(dt => {%>
           <tr>
-            <td><%= dt.id %></td>
+            <td><%= no %> <% no+=1%></td>
             <td><%= dt.first_name %></td>
             <td><%= dt.last_name %></td>
             <td><%= dt.email %></td>

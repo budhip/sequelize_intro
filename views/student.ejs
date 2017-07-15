@@ -3,25 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>Student Page</title>
+    <link href="/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <h1>DATA MURID</h1>
-
-    <button id="btn-start"> <a href="student/add"> Tambah Data</a></button>
-    
+    <button id="btn-start" onclick="window.location='student/add'">Tambah Data</button>
+    <button id="btn-back" onclick="window.location='/'">Back</button>
     <div>
       <table border="1">
         <tr>
-          <th>Id</th>
+          <th>No</th>
           <th>Nama Depan</th>
           <th>Nama Belakang</th>
           <th>Email</th>
           <th>Jurusan</th>
           <th>Action</th>
         </tr>
-        <% dataStudent.forEach(dst => {%>
+        <% var no = 1; dataStudent.forEach(dst => {%>
           <tr>
-            <td><%= dst.id %></td>
+            <td><%= no %> <% no+=1%></td>
             <td><%= dst.first_name %></td>
             <td><%= dst.last_name %></td>
             <td><%= dst.email %></td>

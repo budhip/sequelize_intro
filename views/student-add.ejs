@@ -3,12 +3,19 @@
   <head>
     <meta charset="utf-8">
     <title>Add Student Page</title>
+    <link href="/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <h1>Tambah Data Murid</h1>
+    <button id="btn-back" onclick="window.location='/student'">Back</button>
     <div>
-      <form action="/student" method="post">
+      <form id="main-form" class="modal-content animate" name="mainForm" action="/student" method="post">
         <div class="container">
+          <div>
+            <% if(errmsg != ''){%>
+              <span><%= errmsg%></span>
+            <%}%>
+          </div>
           <label><b>First Name</b></label>
           <input type="text" name="first_name" placeholder="Isi nama depan" />
           <label><b>Last Name</b></label>
@@ -17,10 +24,7 @@
           <input type="text" name="email" placeholder="Isi email" />
           <label><b>Jurusan</b></label>
           <input type="text" name="jurusan" placeholder="Isi Jurusan" />
-          <% if(errmsg != ''){%>
-            <span><%= errmsg%></span>
-          <%}%>
-          <div>
+          <div class="clearfix">
             <button type="submit">Submit</button>
           </div>
         </div>

@@ -3,11 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Add Teacher Page</title>
+    <link href="/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <h1>Tambah Data Guru</h1>
+    <h1><center>Tambah Data Guru</center></h1>
+    <button id="btn-back" onclick="window.location='/teacher'">Back</button>
     <div>
-      <form action="/teacher" method="post">
+      <form id="main-form" class="modal-content animate" name="mainForm" action="/teacher" method="post">
+        <div class="container">
           <label><b>First Name</b></label>
           <input type="text" name="first_name" placeholder="Isi nama depan" />
           <label><b>Last Name</b></label>
@@ -16,17 +19,18 @@
           <input type="text" name="email" placeholder="Isi email" />
           <label><b>Subject</b></label>
           <!-- <input type="text" name="SubjectId" placeholder="Isi subject" /> -->
-          <select name="selectSubject">
-            <option value="">--Select Subject--</option>
-            <% data2.forEach(function(d2){ %>
-            <option value="<%= d2.id %>"><%= d2.id %> <%= d2.subject_name %></option>
-            <% }) %>
-          </select>
-          <div>
-            <button type="submit">Submit</button>
-          </div>
+            <select name="selectSubject">
+              <option value="">--Select Subject--</option>
+              <% data2.forEach(function(d2){ %>
+              <option value="<%= d2.id %>"><%= d2.id %> <%= d2.subject_name %></option>
+              <% }) %>
+            </select>
         </div>
-      </form>
+        <div class="clearfix">
+          <button type="submit">Submit</button>
+        </div>
+      </div>
+    </form>
     </div>
   </body>
 </html>
