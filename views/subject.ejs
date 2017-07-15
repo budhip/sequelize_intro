@@ -16,6 +16,7 @@
           <th>Mata Pelajaran</th>
           <th>Pengajar</th>
           <th>Action</th>
+          <th>Options</th>
         </tr>
         <% var no = 1; dataSubject.forEach(ds => {%>
           <tr>
@@ -31,6 +32,7 @@
             <%} else {%>
               <td><center> - </center></td>
             <% } %>
+            <td><a href='subject/<%= ds.id %>/enrolledstudents'>Enrolled Students</a></td>
 
             <td><a href='subject/edit/<%= ds.id %>'> Edit</a> || <a href='subject/delete/<%= ds.id %>' onclick="return confirm('Yakin mau menghapus data ini?');"> Delete</a></td>
           </tr>

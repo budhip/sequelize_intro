@@ -102,6 +102,7 @@ router.get('/edit/:id/addsubject', function(req, res){
   .then(function(rows){
     Student.Subject.findAll()
     .then(function(dataSubject){
+      console.log(rows);
       res.render('student-add-subject', {data:rows, data2: dataSubject})
     })
   })

@@ -21,4 +21,4 @@ app.use('/teacher', teacher);
 app.use('/subject', subject);
 app.use('/student', student);
 
-app.listen(3001)
+app.listen(3000)

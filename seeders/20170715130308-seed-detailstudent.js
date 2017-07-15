@@ -11,13 +11,11 @@ module.exports = {
         name: 'John Doe',
         isBetaMember: false
       }], {});
-      subject_name: 'Kimia',
-      createdAt: new Date(),
-      updatedAt: new Date()
     */
-    return queryInterface.bulkInsert('Subjects', [{
-    },{
-      subject_name: 'Ekonomi',
+    return queryInterface.bulkInsert('Detailstudents', [{
+      StudentId: 1,
+      SubjectId: 5,
+      score: 85,
       createdAt: new Date(),
       updatedAt: new Date()
     }], {});
