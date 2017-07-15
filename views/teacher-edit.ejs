@@ -6,7 +6,7 @@
     <link href="/style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <h1>Edit Data Murid</h1>
+    <h1>Edit Data Guru</h1>
     <button id="btn-back" onclick="window.location='/teacher'">Back</button>
     <div>
       <form id="main-form" class="modal-content animate" name="mainForm" action="/teacher/edit/<%= data.id %>" method="post">
@@ -28,9 +28,9 @@
                 <option value="<%= d2.id %>"><%= d2.id %> <%= d2.subject_name %></option>
                 <% }) %>
               <%} else {%>
-                <option selected="<%= data.SubjectId %>"><%= data.Subject.subject_name %></option>
+                <option  value="<%= data.SubjectId %>" selected="<%= data.SubjectId %>"><%=data.Subject.subject_name %></option>
                 <% data2.forEach(d2 => { %>
-                  <option value="<%= d2.id %>"><%= d2.id %> <%= d2.subject_name %></option>
+                  <option value="<%= d2.id %>"><%= d2.subject_name %></option>
                 <% }) %>
               <%}%>
             </select>

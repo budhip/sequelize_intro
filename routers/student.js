@@ -95,4 +95,34 @@ router.get('/delete/:id', function(req, res) {
   })
 })
 
+router.get('/edit/:id/addsubject', function(req, res){
+  Student.Student.findById(req.params.id,{
+    include: [Student.Subject]
+  })
+  .then(function(rows){
+    Student.Subject.findAll()
+    .then(function(dataSubject){
+      res.render('student-add-subject', {data:rows, data2: dataSubject})
+    })
+  })
+})
+
+
+router.post('/edit/:id/addsubject', function(req, res) {
+  Student.Detailstudent.create({
+    StudentId: req.params.id,
+    SubjectId: req.body.selectSubject
+  }, {
+    where : {
+      id:req.params.id
+    }
+  })
+  .then(function() {
+    res.redirect('/student')
+  })
+  .catch(err => {
+    console.log(err);
+  })
+})
+
 module.exports = router

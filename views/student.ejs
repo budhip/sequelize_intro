@@ -18,6 +18,7 @@
           <th>Email</th>
           <th>Jurusan</th>
           <th>Action</th>
+          <th>Options</th>
         </tr>
         <% var no = 1; dataStudent.forEach(dst => {%>
           <tr>
@@ -26,6 +27,7 @@
             <td><%= dst.last_name %></td>
             <td><%= dst.email %></td>
             <td><%= dst.jurusan %></td>
+            <td><a href='student/edit/<%= dst.id %>/addsubject'> Add Subject</a></td>
             <td><a href='student/edit/<%= dst.id %>'> Edit</a> || <a href='student/delete/<%= dst.id %>' onclick="return confirm('Yakin mau menghapus data ini?');"> Delete</a></td>
           </tr>
         <% }) %>
