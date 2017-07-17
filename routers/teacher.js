@@ -4,6 +4,14 @@ var router = express.Router()
 const Teacher = require('../models');
 const userauth = require('../helpers/userauth.js');
 
+router.use((req,res, next)=>{
+  if(req.session.user.role == 'headmaster'){
+     next();
+  } else {
+    res.send('Maaf anda tidak diizinkan mengakses halaman ini');
+  }
+})
+
 router.get('/', function (req,res) {
   Teacher.Teacher.findAll({
     order: [['first_name', 'ASC']],

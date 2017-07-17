@@ -5,6 +5,14 @@ var score = require ('../helpers/score_helper');
 const Subject = require('../models');
 const userauth = require('../helpers/userauth.js');
 
+router.use((req,res, next)=>{
+  if(req.session.user.role == 'academic' || req.session.user.role == 'headmaster'){
+     next();
+  } else {
+    res.send('Maaf anda tidak diizinkan mengakses halaman ini');
+  }
+})
+
 router.get('/', function (req, res) {
   Subject.Subject.findAll({
     order: [['subject_name', 'ASC']],
