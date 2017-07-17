@@ -3,6 +3,7 @@ var router = express.Router()
 var Sequelize = require('sequelize')
 
 const Student = require('../models');
+const userauth = require('../helpers/userauth.js');
 
 
 router.get('/', function (req, res) {
@@ -10,12 +11,16 @@ router.get('/', function (req, res) {
     order: [['first_name', 'ASC']]
   })
   .then(data => {
-    res.render('student', {dataStudent: data, pageTitle: 'Student Page'});
+    let userSession = req.session.user
+    let getUserAuth = userauth.userRole(userSession.role)
+    res.render('student', {dataStudent: data, pageTitle: 'Student Page', rolesession: userSession});
   })
 })
 
 router.get('/add', function(req,res){
-    res.render('student-add', {errmsg: '', pageTitle: 'Add Student Page'})
+  let userSession = req.session.user
+  let getUserAuth = userauth.userRole(userSession.role)
+    res.render('student-add', {errmsg: '', pageTitle: 'Add Student Page', rolesession: userSession})
  })
 
 router.post('/', function(req, res){
@@ -47,7 +52,9 @@ router.post('/', function(req, res){
   router.get('/edit/:id', function(req, res){
    Student.Student.findById(req.params.id)
    .then(function(rows) {
-     res.render('student-edit',{data:rows, errmsg: '', pageTitle: 'Edit Student Page'})
+     let userSession = req.session.user
+     let getUserAuth = userauth.userRole(userSession.role)
+     res.render('student-edit',{data:rows, errmsg: '', pageTitle: 'Edit Student Page', rolesession: userSession})
    })
  })
 
@@ -103,7 +110,9 @@ router.get('/edit/:id/addsubject', function(req, res){
     Student.Subject.findAll()
     .then(function(dataSubject){
       console.log(rows);
-      res.render('student-add-subject', {data:rows, data2: dataSubject, pageTitle: 'Add Subject To Student Page'})
+      let userSession = req.session.user
+      let getUserAuth = userauth.userRole(userSession.role)
+      res.render('student-add-subject', {data:rows, data2: dataSubject, pageTitle: 'Add Subject To Student Page', rolesession: userSession})
     })
   })
 })

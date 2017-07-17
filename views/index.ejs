@@ -5,6 +5,12 @@
   </head>
   <body>
     <h1>SELAMAT DATANG DI SEKOLAH</h1>
-    <%- include layout/menu %>
+
+    <% if(userSession == undefined) { %>
+      <button id="btn-start" onclick="window.location='/login'">Login</button>
+    <% } else { %>
+      <button id="btn-start" onclick="window.location='/dashboard'">Dashboard</button>
+    <% }
+    %>
   </body>
 </html>

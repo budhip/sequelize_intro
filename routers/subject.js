@@ -3,6 +3,7 @@ var router = express.Router();
 var score = require ('../helpers/score_helper');
 
 const Subject = require('../models');
+const userauth = require('../helpers/userauth.js');
 
 router.get('/', function (req, res) {
   Subject.Subject.findAll({
@@ -10,13 +11,17 @@ router.get('/', function (req, res) {
     include: [Subject.Teacher]
   })
   .then(data => {
+    let userSession = req.session.user
+    let getUserAuth = userauth.userRole(userSession.role)
     // console.log(data.Teachers[0].id);
-    res.render('subject', {dataSubject: data, pageTitle: 'Subject Page'});
+    res.render('subject', {dataSubject: data, pageTitle: 'Subject Page', rolesession: userSession});
   })
 })
 
 router.get('/add', function(req,res){
-  res.render('subject-add', {pageTitle: 'Add Subject Page'})
+  let userSession = req.session.user
+  let getUserAuth = userauth.userRole(userSession.role)
+  res.render('subject-add', {pageTitle: 'Add Subject Page', rolesession: userSession})
  })
 
 router.post('/', function (req, res) {
@@ -32,7 +37,9 @@ router.post('/', function (req, res) {
 router.get('/edit/:id', function(req, res){
  Subject.Subject.findById(req.params.id)
  .then(function(rows) {
-   res.render('subject-edit',{data:rows, pageTitle: 'Edit Subject Page'})
+   let userSession = req.session.user
+   let getUserAuth = userauth.userRole(userSession.role)
+   res.render('subject-edit',{data:rows, pageTitle: 'Edit Subject Page', rolesession: userSession})
  })
 })
 
@@ -76,7 +83,9 @@ router.get('/:id/enrolledstudents', function (req, res) {
       dataTemp.push(data[i].score)
     }
     console.log(dataTemp);
-    res.render('subject-enrolledstudents', {dataSubject: data, pageTitle: 'Enrolled Students Page', dataScore: score(dataTemp)});
+    let userSession = req.session.user
+    let getUserAuth = userauth.userRole(userSession.role)
+    res.render('subject-enrolledstudents', {dataSubject: data, pageTitle: 'Enrolled Students Page', rolesession: userSession, dataScore: score(dataTemp)});
   })
 })
 
@@ -93,7 +102,9 @@ router.get('/:id/:ids/givescore', function (req, res) {
        }
      })
      .then(datasubject => {
-       res.render('subject-givescore', {data: datasiswa, dataSubject: datasubject, pageTitle: 'Give Score Page'})
+       let userSession = req.session.user
+       let getUserAuth = userauth.userRole(userSession.role)
+       res.render('subject-givescore', {data: datasiswa, dataSubject: datasubject, pageTitle: 'Give Score Page', rolesession: userSession})
      })
    })
  })
