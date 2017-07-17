@@ -14,8 +14,8 @@
         <tr>
           <th>No</th>
           <th>Nama Murid</th>
-          <th>Nilai</th>
-          <th>Score</th>
+          <th>Score By Number</th>
+          <th>Score By Letter</th>
         </tr>
         <%var no = 1; for(var i = 0 ; i < dataSubject.length; i++) {%>
             <tr>
@@ -26,7 +26,7 @@
               <% } else { %>
                 <td><%= dataSubject[i].score%></td>
               <%}%>
-              <td><%= dataScore.splice(0,1) %></td>
+              <td><%= dataScore[i] %></td>
             </tr>
         <% } %>
       </table>
