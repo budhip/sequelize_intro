@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Subject Page</title>
-    <link href="/style.css" rel="stylesheet" type="text/css">
+    <%- include layout/page-header %>
   </head>
   <body>
     <h1>DATA MATA PELAJARAN</h1>
     <div>
+      <%- include layout/menu %>
+      <br>
       <button id="btn-start" onclick="window.location='subject/add'">Tambah Data</button>
       <button id="btn-back" onclick="window.location='/'">Back</button>
       <table border="1">

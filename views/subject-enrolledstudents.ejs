@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Subject Page</title>
-    <link href="/style.css" rel="stylesheet" type="text/css">
+    <%- include layout/page-header %>
   </head>
   <body>
     <h1>Data Mata Pelajaran <%= dataSubject[0].Subject.subject_name %></h1>
     <div>
+      <%- include layout/menu %>
+      <br>
       <button id="btn-back" onclick="window.location='/subject'">Back To Subject List</button>
       <table border="1">
 
@@ -15,6 +15,7 @@
           <th>No</th>
           <th>Nama Murid</th>
           <th>Nilai</th>
+          <th>Score</th>
         </tr>
         <%var no = 1; for(var i = 0 ; i < dataSubject.length; i++) {%>
             <tr>
@@ -25,7 +26,7 @@
               <% } else { %>
                 <td><%= dataSubject[i].score%></td>
               <%}%>
-
+              <td><%= dataScore.splice(0,1) %></td>
             </tr>
         <% } %>
       </table>

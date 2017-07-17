@@ -10,7 +10,7 @@ router.get('/', function (req,res) {
   })
   .then(data => {
     console.log(data);
-    res.render('teacher', {dataTeacher: data})
+    res.render('teacher', {dataTeacher: data, pageTitle: 'Teacher Page'})
   })
   .catch(err => {
     console.log(err);
@@ -21,7 +21,7 @@ router.get('/add', function(req,res){
   Teacher.Subject.findAll()
   .then(data => {
     console.log(data);
-    res.render('teacher-add', {data2: data})
+    res.render('teacher-add', {data2: data, pageTitle: 'Add Teacher Page'})
   })
  })
 
@@ -45,7 +45,7 @@ router.get('/edit/:id', function(req, res){
  .then(function(rows) {
    Teacher.Subject.findAll()
    .then(dataSemua => {
-     res.render('teacher-edit',{data:rows, data2: dataSemua})
+     res.render('teacher-edit',{data:rows, data2: dataSemua, pageTitle: 'Edit Teacher Page'})
    })
  })
 })

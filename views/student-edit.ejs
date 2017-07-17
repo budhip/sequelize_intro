@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Edit Student Page</title>
-    <link href="/style.css" rel="stylesheet" type="text/css">
+    <%- include layout/page-header %>
   </head>
   <body>
     <h1>Edit Data Murid</h1>
+    <%- include layout/menu %>
+    <br>
     <button id="btn-back" onclick="window.location='/student'">Back</button>
     <div>
       <form id="main-form" class="modal-content animate" name="mainForm" action="/student/edit/<%= data.id %>" method="post">

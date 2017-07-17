@@ -1,5 +1,6 @@
-var express = require('express')
-var router = express.Router()
+var express = require('express');
+var router = express.Router();
+var score = require ('../helpers/score_helper');
 
 const Subject = require('../models');
 
@@ -10,12 +11,12 @@ router.get('/', function (req, res) {
   })
   .then(data => {
     // console.log(data.Teachers[0].id);
-    res.render('subject', {dataSubject: data});
+    res.render('subject', {dataSubject: data, pageTitle: 'Subject Page'});
   })
 })
 
 router.get('/add', function(req,res){
-  res.render('subject-add')
+  res.render('subject-add', {pageTitle: 'Add Subject Page'})
  })
 
 router.post('/', function (req, res) {
@@ -31,7 +32,7 @@ router.post('/', function (req, res) {
 router.get('/edit/:id', function(req, res){
  Subject.Subject.findById(req.params.id)
  .then(function(rows) {
-   res.render('subject-edit',{data:rows})
+   res.render('subject-edit',{data:rows, pageTitle: 'Edit Subject Page'})
  })
 })
 
@@ -69,8 +70,13 @@ router.get('/:id/enrolledstudents', function (req, res) {
     order: [['Student', 'first_name', 'ASC']],
   })
   .then(data => {
-    console.log(data);
-    res.render('subject-enrolledstudents', {dataSubject: data});
+    // console.log('fjsafsdkgsgkjhskjghdkjsghkjghs',data[0].score);
+    var dataTemp = [];
+    for (var i = 0; i < data.length; i++) {
+      dataTemp.push(data[i].score)
+    }
+    console.log(dataTemp);
+    res.render('subject-enrolledstudents', {dataSubject: data, pageTitle: 'Enrolled Students Page', dataScore: score(dataTemp)});
   })
 })
 
@@ -87,7 +93,7 @@ router.get('/:id/:ids/givescore', function (req, res) {
        }
      })
      .then(datasubject => {
-       res.render('subject-givescore', {data: datasiswa, dataSubject: datasubject})
+       res.render('subject-givescore', {data: datasiswa, dataSubject: datasubject, pageTitle: 'Give Score Page'})
      })
    })
  })

@@ -1,14 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Index Page</title>
-    <link href="/style.css" rel="stylesheet" type="text/css">
+    <%- include layout/page-header %>
   </head>
   <body>
     <h1>SELAMAT DATANG DI SEKOLAH</h1>
-    <button id="btn-start" onclick="window.location='/teacher'">Halaman Guru</button>
-    <button id="btn-start" onclick="window.location='/subject'">Halaman Mata Pelajaran</button>
-    <button id="btn-start" onclick="window.location='/student'">Halaman Murid</button>
+    <%- include layout/menu %>
   </body>
 </html>

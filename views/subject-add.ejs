@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Add Subject Page</title>
-    <link href="/style.css" rel="stylesheet" type="text/css">
+    <%- include layout/page-header %>
   </head>
   <body>
     <h1>Tambah Data Mata Pelajaran</h1>
+    <%- include layout/menu %>
+    <br>
     <button id="btn-back" onclick="window.location='/subject'">Back</button>
     <div>
       <form id="main-form" class="modal-content animate" name="mainForm" action="/subject" method="post">

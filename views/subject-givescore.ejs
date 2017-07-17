@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Give Score Page</title>
-    <link href="/style.css" rel="stylesheet" type="text/css">
+    <%- include layout/page-header %>
   </head>
   <body>
     <h1>Beri Nilai</h1>
+    <%- include layout/menu %>
+    <br>
     <button id="btn-back" onclick="window.location='/subject/<%= dataSubject[0].id%>/enrolledstudents'">Back To Mata Pelajaran <%= dataSubject[0].subject_name%></button>
     <div>
       <form id="main-form" class="modal-content animate" name="mainForm" action="/subject/<%= data[0].id%>/<%= dataSubject[0].id%>/givescore" method="post">

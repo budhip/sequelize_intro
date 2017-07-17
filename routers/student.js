@@ -10,12 +10,12 @@ router.get('/', function (req, res) {
     order: [['first_name', 'ASC']]
   })
   .then(data => {
-    res.render('student', {dataStudent: data});
+    res.render('student', {dataStudent: data, pageTitle: 'Student Page'});
   })
 })
 
 router.get('/add', function(req,res){
-    res.render('student-add', {errmsg: ''})
+    res.render('student-add', {errmsg: '', pageTitle: 'Add Student Page'})
  })
 
 router.post('/', function(req, res){
@@ -47,7 +47,7 @@ router.post('/', function(req, res){
   router.get('/edit/:id', function(req, res){
    Student.Student.findById(req.params.id)
    .then(function(rows) {
-     res.render('student-edit',{data:rows, errmsg: ''})
+     res.render('student-edit',{data:rows, errmsg: '', pageTitle: 'Edit Student Page'})
    })
  })
 
@@ -103,7 +103,7 @@ router.get('/edit/:id/addsubject', function(req, res){
     Student.Subject.findAll()
     .then(function(dataSubject){
       console.log(rows);
-      res.render('student-add-subject', {data:rows, data2: dataSubject})
+      res.render('student-add-subject', {data:rows, data2: dataSubject, pageTitle: 'Add Subject To Student Page'})
     })
   })
 })
