@@ -7,6 +7,7 @@ const session = require('express-session');
 let app = express();
 
 var index = require ('./routers/index')
+var signup = require ('./routers/signup')
 var login = require ('./routers/login')
 var dashboard = require ('./routers/dashboard')
 var teacher = require ('./routers/teacher')
@@ -28,6 +29,7 @@ app.use(session({
 }))
 
 app.use('/login', login);
+app.use('/signup', signup);
 app.use('/dashboard', dashboard);
 app.use('/', index);
 
