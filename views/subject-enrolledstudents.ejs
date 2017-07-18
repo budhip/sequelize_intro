@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include layout/page-header %>
+  </head>
+  <body>
+    <h1>Data Mata Pelajaran <%= dataSubject[0].Subject.subject_name %></h1>
+    <div>
+      <%- include layout/menu %>
+      <br>
+      <button id="btn-back" onclick="window.location='/subject'">Back To Subject List</button>
+      <table border="1">
+
+        <tr>
+          <th>No</th>
+          <th>Nama Murid</th>
+          <th>Score By Number</th>
+          <th>Score By Letter</th>
+        </tr>
+        <%var no = 1; for(var i = 0 ; i < dataSubject.length; i++) {%>
+            <tr>
+              <td><%= no %><% no += 1 %></td>
+              <td><%= dataSubject[i].Student.first_name %> <%= dataSubject[i].Student.last_name %></td>
+              <% if(dataSubject[i].score == null) { %>
+                <td><a href="/subject/<%= dataSubject[i].StudentId %>/<%= dataSubject[i].SubjectId %>/givescore"> Kasih Nilai</a></td>
+              <% } else { %>
+                <td><%= dataSubject[i].score%></td>
+              <%}%>
+              <td><%= dataScore[i] %></td>
+            </tr>
+        <% } %>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include layout/page-header %>
+  </head>
+  <body>
+    <h1>DATA MURID</h1>
+    <%- include layout/menu %>
+    <br>
+    <button id="btn-start" onclick="window.location='student/add'">Tambah Data</button>
+    <button id="btn-back" onclick="window.location='/'">Back</button>
+    <div>
+      <table border="1">
+        <tr>
+          <th>No</th>
+          <th>Nama Depan</th>
+          <th>Nama Belakang</th>
+          <th>Email</th>
+          <th>Jurusan</th>
+          <th>Action</th>
+          <th>Options</th>
+        </tr>
+        <% var no = 1; dataStudent.forEach(dst => {%>
+          <tr>
+            <td><%= no %> <% no+=1%></td>
+            <td><%= dst.first_name %></td>
+            <td><%= dst.last_name %></td>
+            <td><%= dst.email %></td>
+            <td><%= dst.jurusan %></td>
+            <td><a href='student/edit/<%= dst.id %>/addsubject'> Add Subject</a></td>
+            <td><a href='student/edit/<%= dst.id %>'> Edit</a> || <a href='student/delete/<%= dst.id %>' onclick="return confirm('Yakin mau menghapus data ini?');"> Delete</a></td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+  </body>
+</html>

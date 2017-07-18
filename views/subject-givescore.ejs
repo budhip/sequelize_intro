@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include layout/page-header %>
+  </head>
+  <body>
+    <h1>Beri Nilai</h1>
+    <%- include layout/menu %>
+    <br>
+    <button id="btn-back" onclick="window.location='/subject/<%= dataSubject[0].id%>/enrolledstudents'">Back To Mata Pelajaran <%= dataSubject[0].subject_name%></button>
+    <div>
+      <form id="main-form" class="modal-content animate" name="mainForm" action="/subject/<%= data[0].id%>/<%= dataSubject[0].id%>/givescore" method="post">
+        <div class="container">
+          <label><b>ID Murid</b></label>
+          <input type="text" name="StudentId" value="<%= data[0].id%>" disabled/>
+          <label><b>Nama Depan</b></label>
+          <input type="text" name="first_name" value="<%= data[0].first_name%>" disabled />
+          <label><b>Nama Belakang</b></label>
+          <input type="text" name="last_name" value="<%= data[0].last_name%>" disabled />
+          <label><b>Mata Pelajaran</b></label>
+          <input type="text" name="subject_name" value="<%= dataSubject[0].subject_name%>" disabled />
+          <label><b>Nilai</b></label>
+          <input type="text" name="score" placeholder="Masukkan Nilai" />
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

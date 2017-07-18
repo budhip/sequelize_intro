@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include layout/page-header %>
+  </head>
+  <body>
+    <h1>Edit Data Mata Pelajaran</h1>
+    <%- include layout/menu %>
+    <br>
+    <button id="btn-back" onclick="window.location='/subject'">Back</button>
+    <div>
+      <form id="main-form" class="modal-content animate" name="mainForm" action="/subject/edit/<%= data.id %>" method="post">
+        <div class="container">
+          <label><b>Id</b></label>
+          <input type="text" name="id" value="<%= data.id %>" disabled/>
+          <label><b>Mata Pelajaran</b></label>
+          <input type="text" name="subject_name" value="<%= data.subject_name %>" />
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

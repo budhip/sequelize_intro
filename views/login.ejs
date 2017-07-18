@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include layout/page-header %>
+  </head>
+  <body>
+    <h1><center>SELAMAT DATANG DI SEKOLAH</center></h1>
+    <div>
+      <form id="main-form" class="modal-content animate" name="mainForm" action="/login" method="post">
+        <div class="container">
+          <label><b>Username</b></label>
+          <input type="text" name="username" placeholder="--Username--" />
+          <label><b>Password</b></label>
+          <input type="password" name="password" placeholder="--Password--" />
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

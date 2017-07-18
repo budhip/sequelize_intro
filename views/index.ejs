@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include layout/page-header %>
+  </head>
+  <body>
+    <h1>SELAMAT DATANG DI SEKOLAH</h1>
+
+    <% if(userSession == undefined) { %>
+      <button id="btn-start" onclick="window.location='/login'">Sign In</button>
+      <button id="btn-start" onclick="window.location='/signup'">Sign Up</button>
+    <% } else { %>
+      <button id="btn-start" onclick="window.location='/dashboard'">Dashboard</button>
+    <% }
+    %>
+  </body>
+</html>

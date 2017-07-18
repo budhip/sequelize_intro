@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include layout/page-header %>
+  </head>
+  <body>
+    <h1>DATA GURU</h1>
+    <%- include layout/menu %>
+    <br>
+    <button id="btn-start" onclick="window.location='teacher/add'">Tambah Data</button>
+    <button id="btn-back" onclick="window.location='/'">Back</button>
+    <div>
+      <table border="1">
+        <tr>
+          <th>No</th>
+          <th>Nama Depan</th>
+          <th>Nama Belakang</th>
+          <th>Email</th>
+          <th>Subject</th>
+          <th>Action</th>
+        </tr>
+        <% var no = 1; dataTeacher.forEach(dt => {%>
+          <tr>
+            <td><%= no %> <% no+=1%></td>
+            <td><%= dt.first_name %></td>
+            <td><%= dt.last_name %></td>
+            <td><%= dt.email %></td>
+            <% if (dt.SubjectId == null) { %>
+              <td> Unassigned </td>
+            <%} else {%>
+                <td><%= dt.Subject.subject_name %></td>
+            <% } %>
+            <td><a href='teacher/edit/<%= dt.id %>'> Edit</a> || <a href='teacher/delete/<%= dt.id %>' onclick="return confirm('Yakin mau menghapus data ini?');"> Delete</a></td>
+          </tr>
+        <% }) %>
+      </table>
+    </div>
+  </body>
+</html>

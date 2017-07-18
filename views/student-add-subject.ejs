@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include layout/page-header %>
+  </head>
+  <body>
+    <h1>Tambah Mata Pelajaran ke Murid</h1>
+    <%- include layout/menu %>
+    <br>
+    <button id="btn-back" onclick="window.location='/student'">Back</button>
+    <div>
+      <form id="main-form" class="modal-content animate" name="mainForm" action="/student/edit/<%= data.id %>/addsubject" method="post">
+        <div class="container">
+          <label><b>Id</b></label>
+          <input type="text" name="StudentId" value="<%= data.id %>" disabled/>
+          <label><b>Nama Depan</b></label>
+          <input type="text" name="first_name" value="<%= data.first_name %>" disabled/>
+          <label><b>Nama Belakang</b></label>
+          <input type="text" name="last_name" value="<%= data.last_name %>" disabled/>
+          <label><b>Email</b></label>
+          <input type="email" name="email" value="<%= data.email %>" disabled/>
+          <label><b>Mata Pelajaran</b></label>
+          <% if(data.Subjects[0] == null) { %>
+            <select name="selectSubject">
+              <option value="">--Select Mata Pelajaran--</option>
+              <% data2.forEach(function(d2){ %>
+              <option value="<%= d2.id %>"><%= d2.subject_name %></option>
+              <% }) %>
+            </select>
+          <% } else {%>
+            <select name="selectSubject">
+              <option value = "<%= data.Subjects[0].Detailstudents.StudentId %>" selected="<%= data.Subjects[0].Detailstudents.StudentId %>"><%= data.Subjects[0].subject_name %></option>
+              <% data2.forEach(d2 => { %>
+                <option value="<%= d2.id %>"><%= d2.subject_name %></option>
+              <% }) %>
+            </select>
+          <%}%>
+          <div>
+            <button type="submit">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
